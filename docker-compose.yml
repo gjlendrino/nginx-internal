@@ -1,0 +1,20 @@
+version: '3'
+services:
+    nginx:
+        image: nginx
+        ports:
+          - 80:80
+        volumes:
+          - ./nginx.conf:/etc/nginx/nginx.conf
+          - ./default.conf:/etc/nginx/conf.d/default.conf
+          - ./download.txt:/usr/share/nginx/html/download.txt
+          - ./private.txt:/usr/share/nginx/html-private/private.txt
+          - ./public.txt:/usr/share/nginx/html-public/public.txt
+          - ./hola.php:/usr/share/nginx/html/hola.php
+
+    django:
+        image: poc:1.0
+        ports:
+          - 8000:8000
+        volumes:
+          - ./mysite:/mysite
